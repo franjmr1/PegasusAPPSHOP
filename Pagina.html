@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Pegasus Computers</title>
+	<meta charset="UTF-8">
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="themes/Pegasus.css" />
+	<link rel="stylesheet" href="css/jquery.mobile.icons.min.css" />
+	
+	<script src="js/eventos.js"></script>
+
+
+</head>
+	<body onload="pedirProductos();">
+	<div data-role="page" id="principal" data-theme="a" >
+		<div data-role="header" data-position="fixed">
+			<div data-role="navbar" class="nbc">
+				<ul>
+					<li>
+						<a href="http://localhost/PegasusComputers/Pagina.html">
+							<img src="http://localhost/PegasusComputers/Images/Logo.png" height="35px" align="center">
+						</a>
+					</li>
+					<li>
+						<input  type="search" name="">
+					</li>
+					<li>
+						<a href="" >
+							<img src="http://localhost/PegasusComputers/Images/carrito.png" height="35px" align="center">
+						</a>
+					</li>
+					<li>
+						<a href="#cuenta" >
+							<img src="http://localhost/PegasusComputers/Images/user.png" height="35px" align="center">
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div role="main" class="ui-content">
+			<h1>Productos</h1>
+			<center>
+			<a href="" id="consultar"><img src="http://localhost/PegasusComputers/Images/cargar.png" height="20px" align=""></a></center>
+			<ul id="listado" data-role="listview" data-inset="true">
+
+				<!-- Listado de productos -->
+			</ul>
+			
+		</div>
+		<div data-role="footer" data-position="fixed">
+			<center>
+         <a href="#registrodep" class="ui-btn">Registra tu producto</a></center>
+		</div>
+	</div>
+	<div data-role="page" id="detalles" data-theme="a" >
+		<div data-role="header" data-position="fixed">
+			<div data-role="navbar" class="nbc">
+				<ul>
+					<li>
+						<a href="">
+							<img src="Images/Logo.png" height="35px" align="center">
+						</a>
+					</li>
+					<li>
+						<input  type="search" name="">
+					</li>
+					<li>
+						<a href="" >
+							<img src="Images/carrito.png" height="35px" align="center">
+						</a>
+					</li>
+					<li>
+						<a href="" >
+							<img src="Images/user.png" height="35px" align="center">
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div role="main" class="ui-content">
+			<a href="javascript: history.go(-1)" data-role="button" data-icon="arrow-l" data-iconpos="notext" data-inline="true"></a>
+			<center>
+				<h1 id="nombre">Nombre</h1>
+				<span id="imagen"></span>
+			</center>
+			<p id="disponibles">Disponibles: </p>
+			<p id="precio">Precio</p>
+			<p>Cantidad: </p>
+			<input type="number" id="cantidad"  step="any" >
+			<button id="agregar">Agregar al carrito</button>
+			<button id="comprar">Comprar producto</button>
+			<br>
+			<p id="caracteristicas">Caracteristicas: </p>
+
+		</div>
+		<div data-role="footer" data-position="fixed">
+
+		</div>
+	</div>
+	<!--Página de registro de productos-->
+	<div data-role="page" id="registrodep" data-theme="a" >
+		<div data-role="header" data-position="fixed">
+			<div data-role="navbar" class="nbc">
+				<ul>
+					<li>
+						<a href="http://localhost/PegasusComputers/Pagina.html">
+							<img src="http://localhost/PegasusComputers/Images/Logo.png" height="35px" align="center">
+						</a>
+					</li>
+					<li>
+						<input  type="search" name="">
+					</li>
+					<li>
+						<a href="" >
+							<img src="http://localhost/PegasusComputers/Images/carrito.png" height="35px" align="center">
+						</a>
+					</li>
+					<li>
+						<a href="#cuenta" >
+							<img src="http://localhost/PegasusComputers/Images/user.png" height="35px" align="center">
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div data-role="ui-content">
+			<form action="http://localhost/PegasusComputers/backend/guardarP.php" method="post" enctype="multipart/form-data" data-ajax="false">
+				<table>
+					<tr>
+						<td>
+						<label for="text-basic">Nombre:</label>
+						<input type="text" name="nombre" size="20">
+						</td>
+					</tr>
+					<tr>
+						<td>
+						<label for="text-basic">Descripción:</label>
+						<input type="text" name="descripcion" size="20">
+						</td>
+					</tr>
+					<tr>
+						<td>
+						<label for="text-basic">Precio:</label>
+						<input type="number" step="any" name="precio" size="20">
+						</td>
+					</tr>
+					<tr>
+						<td>
+						<label for="text-basic" >Cantidad:</label>
+						<input type="number" name="cantidad" size="20">
+						</td>
+					</tr>
+					<tr>
+						<td>
+						<label for="imagen">Imagen:</label>
+						<input type="file" name="imagen" size="20">
+						</td>
+					</tr>
+					<tr>
+					    <td>
+					    <input type="submit" value="Subir Producto">
+						</td>
+					</tr>
+				</table>
+			</form>	
+		</div>
+	</div>	
+	<!--Página de cuenta-->
+	<div data-role="page" id="cuenta" data-theme="a" >
+		<div data-role="header" data-position="fixed">
+			<div data-role="navbar" class="nbc">
+				<ul>
+					<li>
+						<a href="http://localhost/PegasusComputers/Pagina.html">
+							<img src="http://localhost/PegasusComputers/Images/Logo.png" height="35px" align="center">
+						</a>
+					</li>
+					<li>
+						<input  type="search" name="">
+					</li>
+					<li>
+						<a href="" >
+							<img src="http://localhost/PegasusComputers/Images/carrito.png" height="35px" align="center">
+						</a>
+					</li>
+					<li>
+						<a href="" >
+							<img src="http://localhost/PegasusComputers/Images/user.png" height="35px" align="center">
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div role="main" class="ui-content">
+			<center><h2>Cuenta</h2>
+			<table border="0" width="345">
+				<tr>
+					<td colspan="2"><a href="#login" data-role="button" data-theme="b"><img src="http://localhost/PegasusComputers/Images/iniciar.png" height="120" width="310"></a></th>
+				</tr>
+				<tr>
+					<th><a href="" data-role="button" data-theme="c"><img src="http://localhost/PegasusComputers/Images/pedidos.png" height="73" width="130"></a></th>
+					<th><a href="#direccionesagr " data-role="button" data-theme="c"><img src="http://localhost/PegasusComputers/Images/direcciones.png" height="73" width="130" onclick="echo();"></a></th>
+				</tr>
+				<tr>
+					<th><a href="" data-role="button" data-theme="c"><img src="http://localhost/PegasusComputers/Images/seguridad.png" height="73" width="130"></a></th>
+					<th><a href="#metodopago" data-role="button" data-theme="c"><img src="http://localhost/PegasusComputers/Images/pago.png" height="73" width="130" onclick="echo2();" ></a></th>
+				</tr>
+				<tr>
+					<th><a href="" data-role="button" data-theme="c"><img src="http://localhost/PegasusComputers/Images/ayuda.png" height="73" width="130"></a></th>
+					<th><a href="#AcercaDe" data-role="button" data-theme="c"><img src="http://localhost/PegasusComputers/Images/acercade.png" height="73" width="130"></a></th>
+				</tr>
+			</table></center>
+		</div>
+	</div>
+    <!--Página de Log In-->
+	<div data-role="page" id="login" data-theme="a" >
+		<div role="main" class="ui-content">
+			<a href="javascript: history.go(-1)" data-role="button" data-icon="arrow-l" data-iconpos="notext" data-inline="true"></a>
+            <center><img src="http://localhost/PegasusComputers/Images/logo c.png" width="200" height="200"></center><br>
+			<h2>Iniciar sesión</h2>
+			<input type="text" placeholder="Correo Electrónico"><br>
+			<input type="password" placeholder="Contraseña" data-clear-btn="false" name="password-1" id="password-1" value="" autocomplete="off"><br>
+			<a href="http://localhost/PegasusComputers/Pagina.html" data-role="button">Iniciar sesión</a><br>
+			<a href="#registro">¿Eres nuevo? Registrate</a>
+		</div>
+	</div>
+	<!--registro de usurario-->
+	<div data-role="page" id="registro" data-theme="a" >
+		<div data-role="header" data-position="fixed">
+		<div data-role="navbar" class="nbc">
+				<ul>
+					<li>
+						<a href="http://localhost/PegasusComputers/Pagina.html">
+							<img src="http://localhost/PegasusComputers/Images/Logo.png" height="35px" align="center">
+						</a>
+					</li>
+					<li>
+						<input  type="search" name="">
+					</li>
+					<li>
+						<a href="" >
+							<img src="http://localhost/PegasusComputers/Images/carrito.png" height="35px" align="center">
+						</a>
+					</li>
+					<li>
+						<a href="" >
+							<img src="http://localhost/PegasusComputers/Images/user.png" height="35px" align="center">
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>	
+	<div role="main" class="ui-content">
+			<a href="javascript: history.go(-1)" data-role="button" data-icon="arrow-l" data-iconpos="notext" data-inline="true"></a>
+
+            <center><img src="http://localhost/PegasusComputers/Images/logo c.png" width="150" height="150"></center><br>
+
+            <form action="http://localhost/PegasusComputers/backend/resgitrarusuario.php" method="post" data-ajax="false">
+			<b><h2>Crear una cuenta</h2></b>
+			<input type="text" id="nombre" name="nombre" placeholder="Nombre"><br>
+			<input type="text" id="correoe" name="correo" placeholder="Correo Electrónico"><br>
+			<input type="password" id="c1" name="contrasena" placeholder="Contraseña" data-clear-btn="false" name="password-1" id="password-1" value="" autocomplete="off"><br>
+			<input type="password" id="c1" name="confimcontrasena" placeholder="Confirma la contraseña" data-clear-btn="false" name="password-1" id="password-1" value="" autocomplete="off"><br>
+			<input type="submit" value="Registrarme">
+            </form>
+			<a href="#login">¿Ya tienes una cuenta? Inicia sesión</a>
+		</div>
+	</div>	
+		<!--Pagina de DescripcionProductoIndividual-->
+	
+	<!--Acerca De-->
+	<div data-role="page" id="AcercaDe" data-theme="a" >
+		<div data-role="header" data-position="fixed">
+			<div data-role="navbar" class="nbc">
+				<ul>
+					<li>
+						<a href="">
+							<img src="Images/Logo.png" height="35px" align="center">
+						</a>
+					</li>
+					<li>
+						<input  type="search" name="">
+					</li>
+					<li>
+						<a href="" >
+							<img src="Images/carrito.png" height="35px" align="center">
+						</a>
+					</li>
+					<li>
+						<a href="" >
+							<img src="Images/user.png" height="35px" align="center">
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div role="main" class="ui-content">
+			<a href="javascript: history.go(-1)" data-role="button" data-icon="arrow-l" data-iconpos="notext" data-inline="true"></a>
+			<h1>Acerca de:</h1>
+			<h2>¿Qué es Pegasus Computers?</h2>
+			<p align="justify">Una asociación de carácter computacional que motiva el avance tecnológico. Brindando la mejor calidad de atención con el objetivo principal de promover el conocimiento e implantar una curiosidad para expandir este mundo en constante evolución.</p>
+			<h2>Misión</h2>
+			<p align="justify">Fomentar la venta y el consumo de componentes electrónicos de manera local y accesible, además de presentar las posibilidades para adquirir nuevo conocimiento de la materia y generar interés en los consumidores para convertirlos en potenciales compradores.</p>
+			<h2>Visión</h2>
+			<p align="justify">Tenemos como visión principal llegar a ser la empresa de componentes electrónicos con la mayor capacidad y entrega del mercado a nivel nacional e internacional. Incrementar los usuarios en el entorno de "Hardware" y normalizar un comportamiento crítico y analítico dentro del sector tecnológico inmediato.</p>
+			<h2>Valores</h2>
+			<ul>
+				<li>Responsabilidad</li>
+				<li>Honor</li>
+				<li>Lealtad</li>
+				<li>Respeto</li>
+				<li>Compromiso</li>
+				<li>Honestidad </li>
+				<li>Integridad </li>
+				<li>Prosperidad</li>
+			</ul>
+		</div>
+		<div data-role="footer" data-position="fixed">
+
+		</div>
+	</div>
+	<!--direcciones-->
+	<div data-role="page" id="direccionesagr" data-theme="a" onload="echo();" >
+		<div data-role="header" data-position="fixed">
+			<div data-role="navbar" class="nbc">
+				<ul>
+					<li>
+						<a href="">
+							<img src="Images/Logo.png" height="35px" align="center" >
+						</a>
+					</li>
+					<li>
+						<input  type="search" name="">
+					</li>
+					<li>
+						<a href="" >
+							<img src="Images/carrito.png" height="35px" align="center">
+						</a>
+					</li>
+					<li>
+						<a href="" >
+							<img src="Images/user.png" height="35px" align="center">
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	
+		<div role="main" class="ui-content">
+			<a href="javascript: history.go(-1)" data-role="button" data-icon="arrow-l" data-iconpos="notext" data-inline="true"></a>
+			<h1>Direcciones</h1>
+			<h2>Direcciones guardadas:</h2>
+			<div class="w3-panel w3-blue w3-round-xlarge">
+
+			    <ul id="direccionesul" data-role="listview" data-inset="true">
+			    	<!--direcciones lista-->
+
+			    </ul>
+			    <div data-role="navbar">
+					<ul>
+						<li><a href="" class="ui-btn-active"> Seleccionar </a> </li>
+						<li><a href=""> Eliminar </a></li>
+					</ul>
+			    </div>
+			    <br>
+			</div>
+			<a href="#agrdr" data-role="button">Agregar dirección</a>
+		</div>
+	</div>
+<!--agregar direccion-->
+	<div data-role="page" id="agrdr" data-theme="a">
+		<div data-role="header" data-position="fixed">
+			<div data-role="navbar" class="nbc">
+				<ul>
+					<li>
+						<a href="">
+							<img src="Images/Logo.png" height="35px" align="center">
+						</a>
+					</li>
+					<li>
+						<input  type="search" name="">
+					</li>
+					<li>
+						<a href="" >
+							<img src="Images/carrito.png" height="35px" align="center">
+						</a>
+					</li>
+					<li>
+						<a href="" >
+							<img src="Images/user.png" height="35px" align="center">
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div role="main" class="ui-content">
+			<a href="javascript: history.go(-1)" data-role="button" data-icon="arrow-l" data-iconpos="notext" data-inline="true"></a>
+			<h1>Agregar dirección nueva</h1>
+
+			<form action="http://localhost/PegasusComputers/backend/agregardireccion.php" method="post" data-ajax="false">
+			<table >
+			<tr>
+			<td><input type="text" name="street" placeholder="Calle"></td>
+			<td>
+			<input type="number" name="streetnumber" placeholder="Número de casa"></td>
+			</tr>
+			<tr>
+			<td colspan="2"><input type="text" name="colonia" placeholder="Colonia"></td>
+			</tr>
+			<tr>
+			<td colspan="2"><input type="text" name="estado" placeholder="Estado"></td>
+			</tr>
+			<tr>
+			<td colspan="2"><input type="text" name="ciudad" placeholder="Ciudad"></td>
+			</tr>
+			<tr>
+			<td colspan="2"><input type="number" name="cp" placeholder="Codigo postal" max="99999"></td>
+			</tr>
+			<tr>
+			<td colspan="2"><input type="number" name="telefono" placeholder="Numero de celular" max="9999999999" ></td>
+			</tr>
+			<tr>
+			<td colspan="2"><input type="submit" Value="Agregar">
+			</td>
+			</tr>
+			</table>	
+			</form>
+		</div>
+	</div>
+	<!--Página Opción de pago-->
+	<div data-role="page" id="metodopago" data-theme="a" onload="echo2();" >
+		<div data-role="header" data-position="fixed">
+			<div data-role="navbar" class="nbc">
+				<ul>
+					<li>
+						<a href="">
+							<img src="Images/Logo.png" height="35px" align="center">
+						</a>
+					</li>
+					<li>
+						<input  type="search" name="">
+					</li>
+					<li>
+						<a href="" >
+							<img src="Images/carrito.png" height="35px" align="center">
+						</a>
+					</li>
+					<li>
+						<a href="" >
+							<img src="Images/user.png" height="35px" align="center">
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div role="main" class="ui-content">
+			<a href="javascript: history.go(-1)" data-role="button" data-icon="arrow-l" data-iconpos="notext" data-inline="true"></a>
+			<h1>Información de pago</h1>
+			<h2>Billetera</h2>
+			<div class="w3-panel w3-blue w3-round-xlarge">
+
+			    <ul id="tarjetasul" data-role="listview" data-inset="true">
+			    	<!--tarjetas lista-->
+
+			    </ul>
+			    <div data-role="navbar">
+					<ul>
+						<li><a href="" class="ui-btn-active"> Seleccionar </a> </li>
+						<li><a href=""> Eliminar </a></li>
+					</ul>
+			    </div>
+			    <br>
+			</div>
+			<a href="#agregarmetodo" data-role="button">Agregar método</a>
+		</div>
+	</div>
+	<!--agregar Opción de pago-->
+	<div data-role="page" id="agregarmetodo" data-theme="a">
+		<div data-role="header" data-position="fixed">
+			<div data-role="navbar" class="nbc">
+				<ul>
+					<li>
+						<a href="#principal">
+							<img src="Images/Logo.png" height="35px" align="center">
+						</a>
+					</li>
+					<li>
+						<input  type="search" name="">
+					</li>
+					<li>
+						<a href="" >
+							<img src="Images/carrito.png" height="35px" align="center">
+						</a>
+					</li>
+					<li>
+						<a href="#cuenta" >
+							<img src="Images/user.png" height="35px" align="center">
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div role="main" class="ui-content">
+			<a href="javascript: history.go(-1)" data-role="button" data-icon="arrow-l" data-iconpos="notext" data-inline="true"></a>
+			<h1>Agregar método de pago</h1>
+			<form action="http://localhost/PegasusComputers/backend/agregarpago.php" method="post" data-ajax="false">
+				<input type="text" name="nombreT" placeholder="Nombre en la tarjeta">
+				<input type="number" name="numeroT" placeholder="Número de tarjeta" max="9999999999999999">
+				<input type="password" name="cvv" placeholder="CVV" max="999">
+				<center>
+					<p>Fecha de vencimiento</p>
+					<input type="date" name="fecha">
+				</center>
+				<input type="submit" value="Agregar">
+			</form>
+		</div>
+	</div>
+</body>
+</html>
